@@ -1,7 +1,8 @@
-app.listen(process.env.PORT || 3000)
 // require express and other modules
 var express = require('express'),
     app = express();
+
+app.listen(process.env.PORT || 3000);
 
 // parse incoming urlencoded form data
 // and populate the req.body object
