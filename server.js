@@ -2,7 +2,6 @@
 var express = require('express'),
     app = express();
 
-app.listen(process.env.PORT || 3000);
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -53,13 +52,25 @@ app.get('/api', function apiIndex(req, res) {
     documentationUrl: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
     baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api", description: "Liberary to all details of my app"},
+      {method: "GET", path: "/api/profile", description: "Basic Profile About Me"},
+      {method: "GET", path: "/api/vacation", description: "Places that I would like to visit"} ,// CHANGE ME
+      {method: "POST", path: "/api/vacation", description: "Updating new places that I would like to vist"},
+      {method: "DELETE", path: "/api/vacation/:id", description: "Updating new places that I would like to vist"}
     ]
   })
 });
 
+app.get('/api/profile', function profile(req, res){
+  //TODO: Hardcode my personal profile under here:
+  res.json({
+    name: 'PengFei Ye',
+    githubLink: 'https://github.com/pengfeiye',
+    githubProfileImage: 'https://avatars2.githubusercontent.com/u/27906150?v=4&s=400&u=292e40b02e259353bfa0082b0bd708eae4d6e47a',
+    personalSiteLink: 'https://pengfeiye.github.io/',
+    currentCity: 'San Francisco'
+  })
+})
 /**********
  * SERVER *
  **********/
