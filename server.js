@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -52,7 +52,7 @@ app.get('/api', function apiIndex(req, res) {
     documentationUrl: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
     baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
-      {method: "GET", path: "/api", description: "Liberary to all details of my app"},
+      {method: "GET", path: "/api", description: "Library to all details of my app"},
       {method: "GET", path: "/api/profile", description: "Basic Profile About Me"},
       {method: "GET", path: "/api/vacation", description: "Places that I would like to visit"} ,// CHANGE ME
       {method: "POST", path: "/api/vacation", description: "Updating new places that I would like to vist"},
@@ -69,6 +69,39 @@ app.get('/api/profile', function profile(req, res){
     githubProfileImage: 'https://avatars2.githubusercontent.com/u/27906150?v=4&s=400&u=292e40b02e259353bfa0082b0bd708eae4d6e47a',
     personalSiteLink: 'https://pengfeiye.github.io/',
     currentCity: 'San Francisco'
+  })
+})
+
+
+
+//get all my hardcoded vacation spots
+
+app.get('/api/vacation', function (req, res){
+  db.Vacation.find(function (err, vacaSpots){
+    res.json(vacaSpots)
+  })
+})
+
+app.delete('/api/vacation/:id', function(req, res){
+  db.Vacation.findOneAndRemove({_id:req.params.id}, function(err, deleted){
+    if(err){console.log("server 87"+ err)}
+    res.json(deleted)
+  })
+})
+
+//add new visiting locations
+
+app.post('/api/vacation', function (req, res){
+  var newVacation = new db.Vacation({
+    country: req.body.country,
+    city: req.body.city,
+    cost: req.body.cost,
+    image: req.body.image,
+  })
+
+  newVacation.save(function(err, yay){
+    if(err){return console.log(err)};
+    res.json(yay)
   })
 })
 /**********

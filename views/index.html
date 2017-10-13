@@ -19,15 +19,43 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
           <h1>Peng's Personal API</h1>
-          <h4><a href="/api">Read My API Documentation</a></h4>
-          <h3>About Me<h3>
-            <h5>My name is <span id="myName"></span></h5>
-            <h5>GitHub Link: <span id="githubLink"></span></h5>
-            <h5>Personal Webite: <span id="personalSite"></span></h5>
-            <h5>I currently live in <span id="cityNow"></span></h5>
+          <h4 id="readApi"><a href="/api">Read My API Documentation</a></h4>
+          <div class="col-md-4 col-md-offset-1">
+            <h3 id="aboutMe">About Me</h3>
+              <h5>My name is <span id="myName"></span></h5>
+              <h5>GitHub Link: <span id="githubLink"></span></h5>
+              <h5>Personal Webite: <span id="personalSite"></span></h5>
+              <h5>I currently live in <span id="cityNow"></span></h5>
+              <h5 id="photoMe"></h5>
+          </div>
+          <div class="col-md-4 col-md-offset-1">
+            <h3>New Places<h3>
+            <form role="form-inline" id="vacaForm">
+              <div class="form-group">
+                <label for="title"> Desired Country to Visit</label>
+                <input type="text" class="form-control" name="country" placeholder="Country wanted to visit">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="Desired city in that country">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="cost" placeholder="Estimated traveling cost">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="image" placeholder="URL image">
+              </div>
+                <button type="submit" class="btn btn-info">Add new desired vacation</button>
+            </form>
+          </div>
         </div>
+      </div>
+      <div class="col-md-12">
+        <h1>Places To Visit!<h1>
+          <div class="col-md-12" id="showVacaSpot">
+
+          </div>
       </div>
     </div>
   </body>
